@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // Create element:
+    const Wrapper = document.createElement("div");
+
+    const labelA = document.createElement("label");
+    const labelB = document.createElement("label");
+    labelA.innerText = "A";
+    labelB.innerText = "B";
+    const inputA = document.createElement("input");
+    const inputB = document.createElement("input");
+
+    const buttonSum = document.createElement("button");
+    buttonSum.innerText = "sum";
+    Wrapper.appendChild(labelA);
+    Wrapper.appendChild(inputA);
+    Wrapper.appendChild(document.createElement("br"))
+    Wrapper.appendChild(labelB);
+    Wrapper.appendChild(inputB);
+    Wrapper.appendChild(document.createElement("br"))
+    Wrapper.appendChild(buttonSum);
+    // Append to body:
+    document.body.appendChild(Wrapper);
+
+    let uses = {};
+
+    const CallAPI = async() => {
+        return await fetch("https://jsonplaceholder.typicode.com/posts")
+            .then(res => res.json())
+    }
+
+    // CallAPI().then(data => console.log(data));
+
+    const APIPostDocument = async() => {
+        fetch("https://jsonplaceholder.typicode.com/posts", {
+                method: 'POST',
+                body: JSON.stringify({
+                    title: 'Huu',
+                    body: 'Tuan1:fetch',
+                    userId: 11,
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+            .then(res => res.json())
+            .then(json => console.log(json));
+    }
+
+    APIPostDocument();
+
+    const APIPatchDocument = async() => {
+        fetch("https://jsonplaceholder.typicode.com/posts/1", {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    title: 'Huu'
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+            .then(res => res.json())
+            .then(json => console.log(json));
+    }
+
+    APIPatchDocument()
+</script>
+
+</html>
